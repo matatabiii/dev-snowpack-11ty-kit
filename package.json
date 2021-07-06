@@ -1,0 +1,34 @@
+{
+  "name": "11ty-snowpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clear": "del dist src/assets/styles/",
+    "start": "snowpack dev",
+    "build:snowpack": "snowpack build",
+    "build": "del dist && snowpack build",
+    "_postcss": "postcss dist/assets/css/*.css --replace",
+    "build:sass": "sass --no-source-map src/sass:dist/assets/styles",
+    "build:eleventy": "eleventy",
+    "watch:sass": "sass --watch src/sass:src/assets/styles",
+    "watch:eleventy": "eleventy --watch --incremental"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@snowpack/plugin-postcss": "^1.4.3",
+    "@snowpack/plugin-run-script": "^2.3.0",
+    "@snowpack/plugin-sass": "^1.4.0",
+    "autoprefixer": "^10.2.6",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^5.0.6",
+    "del-cli": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.5",
+    "sass": "^1.35.1",
+    "snowpack": "^3.7.1"
+  }
+}

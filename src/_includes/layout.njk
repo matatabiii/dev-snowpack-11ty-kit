@@ -1,0 +1,24 @@
+---
+title: Hello World
+root: ./
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ root }}assets/styles/index.css">
+    <link rel="stylesheet" href="{{ root }}assets/styles/common.css">
+  </head>
+  <body>
+
+    {% include "./nav.njk" %}
+
+    <main>
+      {{ content | safe }}
+    </main>
+
+    <script type="module" src="{{ root }}assets/scripts/index.js"></script>
+  </body>
+</html>
