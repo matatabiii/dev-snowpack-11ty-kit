@@ -1,35 +1,47 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
   mount: {
-    'src/_site': {
-      url: '/',
+    "src/_site": {
+      url: "/",
       static: true,
     },
-    'src/assets': '/assets',
+    "src/assets": "/assets",
   },
   plugins: [
     [
-      '@snowpack/plugin-run-script',
+      '@snowpack/plugin-dotenv',
+      "@snowpack/plugin-run-script",
       {
-        cmd: 'eleventy', // production build command
-        watch: 'eleventy --watch --incremental', // (optional) dev server command
+        cmd: "eleventy", // production build command
+        watch: "eleventy --watch --incremental", // (optional) dev server command
       },
     ],
     [
-      '@snowpack/plugin-sass',
+      "@snowpack/plugin-sass",
       {
         // native: true,
         compilerOptions: {
-          style: 'expanded', // compressed
+          style: "expanded", // compressed
         },
       },
     ],
-    '@snowpack/plugin-postcss',
+    "@snowpack/plugin-postcss",
+    "@snowpack/plugin-typescript",
+    // [
+    //   "@snowpack/plugin-webpack",
+    //   {
+    //     extendConfig: {
+    //       resolve: {
+    //         extensions: [".ts", ".js"],
+    //       },
+    //     },
+    //   },
+    // ],
   ],
   // optimize: {
   //   bundle: false,
-  //   // minify: false,
-  //   // target: 'es2018',
+  //   minify: false,
+  //   target: 'es2018',
   //   // sourcemap: false,
   // },
   routes: [
@@ -44,8 +56,8 @@ export default {
     // hmrDelay: 3000,
   },
   buildOptions: {
-    out: 'dist',
-    baseUrl: '/',
-    htmlFragments: true
+    out: "dist",
+    baseUrl: "./",
+    htmlFragments: true,
   },
 };
