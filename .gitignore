@@ -1,3 +1,25 @@
+# Dependencies
 node_modules
+
+# VSCode
+.vscode
+
+# Intellij idea
+*.iml
+.idea
+
+# OSX
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Dist folders
 dist
+
+# Other
+.cache
+npm-debug.log
+src/_site
+
+# Logs
+*.log
