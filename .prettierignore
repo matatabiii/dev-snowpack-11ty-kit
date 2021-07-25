@@ -1,0 +1,8 @@
+# Common
+node_modules
+dist
+postcss.config.js
+.eleventy.js
+snowpack.config.mjs
+snowpack.config.js
+.vscode
