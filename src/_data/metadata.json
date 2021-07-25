@@ -1,0 +1,13 @@
+{
+  "sitename": "サイト名",
+  "url": "https://example.com",
+  "assets": "assets",
+  "msapplicationTileColor": "#ffffff",
+  "themeColor": "#ffffff",
+  "charset": "utf-8",
+  "lang": "ja",
+  "locale": "ja_JP",
+  "author": "サイト名",
+  "icon": "/assets/images/favicon.png",
+  "appleTouchIcon": "/assets/images/apple-touch-icon.png"
+}

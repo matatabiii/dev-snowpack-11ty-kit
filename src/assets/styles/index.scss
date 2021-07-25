@@ -1,15 +1,4 @@
-$color: blue;
-
-a {
-  color: $color;
-}
-
-
-::placeholder {
-  color: gray;
-}
-
-.a {
-  user-select: none; /* 適用される */
-  appearance: none;  /* 適用される */
-}
+@use './Foundation/mediaQueriesList';
+@use './Foundation/index' as *;
+@use './Layout/index' as *;
+@use './Component/index' as *;

@@ -1,23 +1,79 @@
 ---
-title: Hello World
 root: ./
+titleTag: ページタイトル
+page:
+  class: ''
+  type: page
+  slug: ''
+og:
+  url: ''
+  type: article
+  image: /assets/images/og-image.jpg
+bodyClass: u-family-sans u-color-text u-lh20 u-size16 u-400 u-font-smoothing u-feature-palt u-bgColor-white
 ---
-<!doctype html>
-<html lang="ja">
+
+{%- set assets = root + metadata.assets + '' -%} {%- set canonical =
+metadata.url + page.path -%} {%- set titleTag = title + ' | ' +
+metadata.sitename if title else titleTag -%} {%- set h1Home = 'h1' if page.type
+=== 'front-page' else 'div' -%}
+
+<!DOCTYPE html>
+<html
+  class="no-js"
+  lang="{{ metadata.lang }}"
+  prefix="og: http://ogp.me/ns#"
+  data-root="{{ root }}"
+  data-assets="{{ assets }}"
+>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ root }}assets/styles/index.css">
-    <link rel="stylesheet" href="{{ root }}assets/styles/common.css">
+    {% include "component-head.njk" -%}
+    <link rel="stylesheet" href="{{ root }}assets/styles/index.css" />
+    <link rel="stylesheet" href="{{ root }}assets/styles/utility.css" />
+    <link
+      rel="stylesheet"
+      href="{{ root }}assets/styles/print.css"
+      media="print"
+    />
+    <script>
+      document.documentElement.classList.add('js')
+      document.documentElement.classList.remove('no-js')
+    </script>
   </head>
-  <body>
 
-    {% include "./nav.njk" %}
+  <body class="{{ bodyClass }}">
+    <div id="body" class="l-body {{ page.class }}">
+      <div id="header" class="l-header" data-component="header">
+        {% include "component-header.njk" %}
+      </div>
+      <!-- /#header -->
 
-    <main>
-      {{ content | safe }}
-    </main>
+      {% if hero %} {% include "component-hero.njk" %} {% endif %}
+
+      <div id="container" class="l-container" data-component="container">
+        <div id="main" class="l-main" data-component="main">
+          {{ content | safe }}
+        </div>
+        <!-- /#main -->
+
+        {%- if getSidebar -%}
+        <div id="side" class="l-side" data-component="side">
+          <div id="side-inner" class="l-side__inner">
+            {% include "component-sidebar.njk" %}
+          </div>
+        </div>
+        <!-- /#side -->
+        {%- endif -%}
+      </div>
+      <!-- /#container -->
+
+      <div id="footer" class="l-footer" data-component="footer">
+        {% include "component-footer.njk" %}
+      </div>
+      <!-- /#footer -->
+    </div>
+    <!-- /#body -->
+
+    <div data-logic="drawer-close" class="l-drawer-overlay"></div>
 
     <script type="module" src="{{ root }}assets/scripts/index.js"></script>
   </body>
