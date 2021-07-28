@@ -15,10 +15,12 @@ node_modules
 
 # Dist folders
 dist
+build
 
 # Other
 .cache
 npm-debug.log
+_site
 src/_site
 
 # Logs

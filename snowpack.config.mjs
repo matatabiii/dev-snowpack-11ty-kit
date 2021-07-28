@@ -1,19 +1,19 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
   mount: {
-    "src/_site": {
+    "_site": {
       url: "/",
       static: true,
     },
     "src/assets": "/assets",
   },
   plugins: [
+    "@snowpack/plugin-dotenv",
     [
-      '@snowpack/plugin-dotenv',
       "@snowpack/plugin-run-script",
       {
-        cmd: "eleventy", // production build command
-        watch: "eleventy --watch --incremental", // (optional) dev server command
+        cmd: "npm run svgSprite && npx eleventy", // production build command
+        watch: "npx eleventy --watch --incremental", // (optional) dev server command
       },
     ],
     [
@@ -53,7 +53,7 @@ export default {
   },
   devOptions: {
     // Eleventy updates multiple files at once, so add a 300ms delay before we trigger a browser update
-    // hmrDelay: 3000,
+    hmrDelay: 300,
   },
   buildOptions: {
     out: "dist",
