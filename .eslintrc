@@ -14,5 +14,10 @@
   ],
   "rules": {
     "quotes": ["error", "single"]
+  },
+  "ignorePatterns": ["**/*.min.js", "**/lib/*.js"],
+  "globals": {
+    "jQuery": "readonly",
+    "$": "readonly"
   }
 }
