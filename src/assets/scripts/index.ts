@@ -1,7 +1,11 @@
-import { console } from './modules/console';
-
-const text = 'ｈご'
+import { console } from './modules/console'
+const text = 'hご'
 console(text)
+
+function doAlert () {
+  window.console.log('11')
+}
+doAlert()
 
 // async function f() {
 //   const promise = new Promise((resolve) => {
