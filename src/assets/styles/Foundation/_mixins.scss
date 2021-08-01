@@ -207,16 +207,7 @@
     }
   }
 }
-@mixin action-closure(
-  $pseudoClass,
-  $isPseudoNot,
-  $isSpNot,
-  $rootClass,
-  $element,
-  $parent,
-  $supportAttr,
-  $decoration
-) {
+@mixin action-closure($pseudoClass, $isPseudoNot, $isSpNot, $rootClass, $element, $parent, $supportAttr, $decoration) {
   $_hover: ':hover';
   $_focus: ':focus';
   $_support: '#{$supportAttr}';
@@ -369,12 +360,7 @@
 /// @param {string} $color        カラーコード
 /// @param {string} $chain-before 連鎖させる値(前)
 /// @param {string} $chain-after  連鎖させる値(後)
-@mixin text-outline(
-  $width: 1px,
-  $color: color('font'),
-  $chain-before: null,
-  $chain-after: null
-) {
+@mixin text-outline($width: 1px, $color: color('font'), $chain-before: null, $chain-after: null) {
   text-shadow: text-outline($width, $color, $chain-before, $chain-after);
 }
 
@@ -392,12 +378,7 @@
 /// @param {string} $property プロパティ名
 /// @param {number} $gutter   溝の値
 /// @param {boolean}   $jsut     $gutterを含めた幅か、ジャストサイズか
-@mixin container(
-  $width: width('container'),
-  $property: 'width',
-  $gutter: $gutter,
-  $just: false
-) {
+@mixin container($width: width('container'), $property: 'width', $gutter: $gutter, $just: false) {
   display: block;
   margin-right: auto;
   margin-left: auto;

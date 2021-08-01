@@ -12,10 +12,9 @@ og:
 bodyClass: u-family-sans u-color-text u-lh20 u-size16 u-400 u-font-smoothing u-feature-palt u-bgColor-white
 ---
 
-{%- set assets = root + metadata.assets + '' -%} {%- set canonical =
-metadata.url + page.path -%} {%- set titleTag = title + ' | ' +
-metadata.sitename if title else titleTag -%} {%- set h1Home = 'h1' if page.type
-=== 'front-page' else 'div' -%}
+{%- set assets = root + metadata.assets + '' -%} {%- set canonical = metadata.url + page.path -%} {%- set titleTag =
+title + ' | ' + metadata.sitename if title else titleTag -%} {%- set h1Home = 'h1' if page.type === 'front-page' else
+'div' -%}
 
 <!DOCTYPE html>
 <html
@@ -29,11 +28,7 @@ metadata.sitename if title else titleTag -%} {%- set h1Home = 'h1' if page.type
     {% include "component-head.njk" -%}
     <link rel="stylesheet" href="{{ root }}assets/styles/index.css" />
     <link rel="stylesheet" href="{{ root }}assets/styles/utility.css" />
-    <link
-      rel="stylesheet"
-      href="{{ root }}assets/styles/print.css"
-      media="print"
-    />
+    <link rel="stylesheet" href="{{ root }}assets/styles/print.css" media="print" />
     <script>
       document.documentElement.classList.add('js')
       document.documentElement.classList.remove('no-js')
@@ -42,9 +37,7 @@ metadata.sitename if title else titleTag -%} {%- set h1Home = 'h1' if page.type
 
   <body class="{{ bodyClass }}">
     <div id="body" class="l-body {{ page.class }}">
-      <div id="header" class="l-header" data-component="header">
-        {% include "component-header.njk" %}
-      </div>
+      <div id="header" class="l-header" data-component="header">{% include "component-header.njk" %}</div>
       <!-- /#header -->
 
       {% if hero %} {% include "component-hero.njk" %} {% endif %}
@@ -57,18 +50,14 @@ metadata.sitename if title else titleTag -%} {%- set h1Home = 'h1' if page.type
 
         {%- if getSidebar -%}
         <div id="side" class="l-side" data-component="side">
-          <div id="side-inner" class="l-side__inner">
-            {% include "component-sidebar.njk" %}
-          </div>
+          <div id="side-inner" class="l-side__inner">{% include "component-sidebar.njk" %}</div>
         </div>
         <!-- /#side -->
         {%- endif -%}
       </div>
       <!-- /#container -->
 
-      <div id="footer" class="l-footer" data-component="footer">
-        {% include "component-footer.njk" %}
-      </div>
+      <div id="footer" class="l-footer" data-component="footer">{% include "component-footer.njk" %}</div>
       <!-- /#footer -->
     </div>
     <!-- /#body -->

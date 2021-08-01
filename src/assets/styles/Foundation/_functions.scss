@@ -62,22 +62,13 @@
 /// @param  {string} $chain-before 連鎖させる値(前)
 /// @param  {string} $chain-after  連鎖させる値(後)
 /// @return {string}               値
-@function text-outline(
-  $width: 1px,
-  $color: color('font'),
-  $chain-before: null,
-  $chain-after: null
-) {
-  @return $chain-before, 0 * $width -1 * $width 0 $color,
-    0.33 * $width -0.99 * $width 0 $color, 0.66 * $width -0.66 * $width 0 $color,
-    0.99 * $width -0.33 * $width 0 $color, 1 * $width 0 * $width 0 $color,
-    0.99 * $width 0.33 * $width 0 $color, 0.66 * $width 0.66 * $width 0 $color,
-    0.33 * $width 0.99 * $width 0 $color, 0 * $width 1 * $width 0 $color,
-    -0.33 * $width 0.99 * $width 0 $color, -0.66 * $width 0.66 * $width 0 $color,
-    -0.99 * $width 0.33 * $width 0 $color, -1 * $width 0 * $width 0 $color,
-    -0.99 * $width -0.33 * $width 0 $color,
-    -0.66 * $width -0.66 * $width 0 $color,
-    -0.33 * $width -0.99 * $width 0 $color, $chain-after;
+@function text-outline($width: 1px, $color: color('font'), $chain-before: null, $chain-after: null) {
+  @return $chain-before, 0 * $width -1 * $width 0 $color, 0.33 * $width -0.99 * $width 0 $color,
+    0.66 * $width -0.66 * $width 0 $color, 0.99 * $width -0.33 * $width 0 $color, 1 * $width 0 * $width 0 $color,
+    0.99 * $width 0.33 * $width 0 $color, 0.66 * $width 0.66 * $width 0 $color, 0.33 * $width 0.99 * $width 0 $color,
+    0 * $width 1 * $width 0 $color, -0.33 * $width 0.99 * $width 0 $color, -0.66 * $width 0.66 * $width 0 $color,
+    -0.99 * $width 0.33 * $width 0 $color, -1 * $width 0 * $width 0 $color, -0.99 * $width -0.33 * $width 0 $color,
+    -0.66 * $width -0.66 * $width 0 $color, -0.33 * $width -0.99 * $width 0 $color, $chain-after;
 }
 
 /// 横幅取得
@@ -367,8 +358,7 @@
     // 1文字ずつ取り出す
     $character: str-slice($string, $i, $i);
     // 2進数へ変換
-    $binary_number: $binary_number +
-      map.get($character_to_binary_number_table, $character);
+    $binary_number: $binary_number + map.get($character_to_binary_number_table, $character);
   }
 
   // 2進数を6ビットずつ分割した配列
@@ -402,8 +392,7 @@
 
   @for $i from 1 to length($hexadecimal_number) + 1 {
     // 変換テーブルを使ってbase64エンコード
-    $base64_string: $base64_string +
-      map.get($binary_number_to_base64_table, nth($hexadecimal_number, $i));
+    $base64_string: $base64_string + map.get($binary_number_to_base64_table, nth($hexadecimal_number, $i));
   }
 
   // base64の最終結果
