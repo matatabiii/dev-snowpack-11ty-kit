@@ -1,23 +1,27 @@
 {
   "root": true,
   "env": {
-    "es2020": true,
-    "browser": true
+    "browser": true,
+    "es6": true
   },
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "standard"
+    // "eslint:recommended",
+    // "plugin:@typescript-eslint/recommended", // TypeScriptでチェックされる項目をLintから除外する設定
+    // "prettier"
   ],
-  "rules": {
-    "quotes": ["error", "single"]
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "project": "./tsconfig.json" // TypeScriptのLint時に参照するconfigファイルを指定
   },
-  "ignorePatterns": ["**/*.min.js", "**/lib/*.js"],
+  "ignorePatterns": ["**/*.min.js", "**/libs/*.js"],
+  "rules": {
+    "guard-for-in": "error"
+  },
   "globals": {
-    "jQuery": "readonly",
-    "$": "readonly"
+    "jQuery": false,
+    "$": false
   }
 }

@@ -10,15 +10,14 @@ const autoprefixer = require('autoprefixer')
 
 const config = {
   plugins: [
-    cssnano({ preset: 'default', }),
+    cssnano({ preset: 'default' }),
     autoprefixer,
-    require("css-mqpacker")({
-      sort: true,
+    require('css-mqpacker')({
+      sort: true
     })
     // require('postcss-sort-media-queries') // issueが修正され次第使用
   ]
 }
-
 
 // if (process.env.NODE_ENV === 'production') {
 //   config.plugins.push(

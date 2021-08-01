@@ -20,7 +20,7 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       input: 'src',
-      output: '_site'
+      output: 'src/_site'
     },
     // templateFormats: ['md', 'njk'] // 対象のファイルを限定する
   };

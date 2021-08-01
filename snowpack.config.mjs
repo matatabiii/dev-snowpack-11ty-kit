@@ -1,7 +1,7 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
   mount: {
-    "_site": {
+    "src/_site": {
       url: "/",
       static: true,
     },
@@ -12,7 +12,7 @@ export default {
     [
       "@snowpack/plugin-run-script",
       {
-        cmd: "npm run svgSprite && npx eleventy", // production build command
+        cmd: "echo build Snowpack", // production build command
         watch: "npx eleventy --watch --incremental", // (optional) dev server command
       },
     ],
@@ -38,12 +38,12 @@ export default {
     //   },
     // ],
   ],
-  // optimize: {
-  //   bundle: false,
-  //   minify: false,
-  //   target: 'es2018',
-  //   // sourcemap: false,
-  // },
+  optimize: {
+    bundle: false,
+    minify: true,
+    target: 'es2018',
+    // sourcemap: false,
+  },
   routes: [
     /* Enable an SPA Fallback in development: */
     // {"match": "routes", "src": ".*", "dest": "/index.html"},
