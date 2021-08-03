@@ -41,7 +41,7 @@ $width-map: (
   'xl': 1280px,
   'lg': 1024px,
   'md': 768px,
-  'sm': 576px,
+  'sm': 640px,
 ) !default;
 
 // @Function height("header-desktop")
@@ -75,25 +75,6 @@ $family-map: (
   }
   @return currentColor;
 }
-// ハンバーガーメニューの情報
-$trigger-style: (
-  'width': 70px,
-  'height': 70px,
-  'border': none,
-  'border-color': _color('text'),
-  'trigger-radius': 0,
-  'open-bg-color': _color('text'),
-  'open-line-color': _color('white'),
-  'open-label-color': _color('white'),
-  'close-bg-color': _color('text'),
-  'close-line-color': _color('white'),
-  'close-label-color': _color('white'),
-  'line-width': 30px,
-  'line-height': 2px,
-  'line-radius': 0px,
-  'line-space': 5px,
-) !default;
-
 // @Function space("50")
 $space-map: (
   '0': 0,

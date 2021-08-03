@@ -5,13 +5,35 @@
     <nav id="drawer" data-logic="drawer">
       <div data-logic="drawer-scroll">
         <div data-logic="drawer-container">
+          <div class="l-nav l-header-base__nav">
+            <ul class="l-nav-list c-list u-size16 u-lh12 u-700 c-flex">
+              <li class="u-w-12 L:u-w-auto l-nav-list__item">
+                <a href="<%= fvGet.root %>sample/" class="l-nav-list__link"><span
+                    class="l-nav-list__link__label c-flex u-items-center u-justify-center u-pl30 u-pr30">
+                    <span>サンプル</span></span>
+                </a>
+              </li>
+              <li class="u-w-12 L:u-w-auto l-nav-list__item">
+                <a href="<%= fvGet.root %>form/" class="l-nav-list__link"><span
+                    class="l-nav-list__link__label c-flex u-items-center u-justify-center u-pl30 u-pr30">
+                    <span>フォーム</span></span>
+                </a>
+              </li>
+              <li class="u-w-12 L:u-w-auto l-nav-list__item">
+                <a href="<%= fvGet.root %>form-ec/check.html" class="l-nav-list__link"><span
+                    class="l-nav-list__link__label c-flex u-items-center u-justify-center u-pl30 u-pr30">
+                    <span>フォームEC（確認画面）</span></span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
   </div>
 </header>
 
-<button data-logic="drawer-trigger" id="trigger" type="button" class="l-trigger L:u-hidden">
+<button data-logic="drawer-trigger" id="trigger" type="button" class="l-trigger">
   <span class="l-trigger__label">メニュー</span>
   <span class="l-trigger__u"></span>
 </button>

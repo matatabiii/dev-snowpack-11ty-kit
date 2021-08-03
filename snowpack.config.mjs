@@ -1,7 +1,7 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
   mount: {
-    "src/_site": {
+    "_site": {
       url: "/",
       static: true,
     },
@@ -12,7 +12,7 @@ export default {
     [
       "@snowpack/plugin-run-script",
       {
-        cmd: "echo build Snowpack", // production build command
+        cmd: "echo build!", // production build command
         watch: "npx eleventy --watch --incremental", // (optional) dev server command
       },
     ],
@@ -41,7 +41,7 @@ export default {
   optimize: {
     bundle: false,
     minify: true,
-    target: 'es2018',
+    target: 'es2015',
     // sourcemap: false,
   },
   routes: [

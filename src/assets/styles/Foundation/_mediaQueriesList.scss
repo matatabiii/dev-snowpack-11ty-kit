@@ -1,6 +1,7 @@
 @use '../foundation/variable' as *;
 @use '../foundation/functions' as *;
 @use '../foundation/mixins' as *;
+
 @include over(375px) {
   /**/
 }

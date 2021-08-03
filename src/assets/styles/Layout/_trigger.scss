@@ -1,0 +1,172 @@
+/*////////////////////////////
+
+@layout/trigger-drawer
+ハンバーガーメニュー
+
+////////////////////////////*/
+@use "sass:map"; // sassの機能
+// 【必須】variable, functions, mixins 読み込み
+@use '../foundation/variable' as *;
+@use '../foundation/functions' as *;
+@use '../foundation/mixins' as *;
+
+// https://github.com/dmnsgn/sass-easing/blob/master/_easings.scss
+@use "./../../../node_modules/sass-easing/_easings.scss" as *;
+
+// ハンバーガーメニューの情報
+$trigger-style: (
+  'width': 70px,
+  'height': 70px,
+  'border': none,
+  'border-color': _color('text'),
+  'trigger-radius': 0,
+  'open-bg-color': _color('text'),
+  'open-line-color': _color('white'),
+  'open-label-color': _color('white'),
+  'close-bg-color': _color('text'),
+  'close-line-color': _color('white'),
+  'close-label-color': _color('white'),
+  'line-width': 30px,
+  'line-height': 2px,
+  'line-radius': 0px,
+  'line-space': 5px,
+) !default;
+
+$width: map.get($trigger-style, 'width');
+$height: map.get($trigger-style, 'height');
+$trigger-radius: map.get($trigger-style, 'trigger-radius');
+$border: map.get($trigger-style, 'border');
+$border-color: map.get($trigger-style, 'border-color');
+
+$open-bg-color: map.get($trigger-style, 'open-bg-color');
+$open-line-color: map.get($trigger-style, 'open-line-color');
+$open-label-color: map.get($trigger-style, 'open-label-color');
+
+$close-bg-color: map.get($trigger-style, 'close-bg-color');
+$close-line-color: map.get($trigger-style, 'close-line-color');
+$close-label-color: map.get($trigger-style, 'close-label-color');
+
+$line-width: map.get($trigger-style, 'line-width');
+$line-height: map.get($trigger-style, 'line-height');
+$line-radius: map.get($trigger-style, 'line-radius');
+$line-space: map.get($trigger-style, 'line-space');
+$calced-line-space: $line-height + $line-space;
+
+$label-size: map.get($trigger-style, 'label-size');
+
+/*! purgecss start ignore */
+
+button.l-trigger:focus {
+  outline: none;
+}
+.l-trigger {
+  outline: none;
+  position: fixed;
+  z-index: z-index('trigger');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: $trigger-radius;
+
+  top: 0;
+  right: 0;
+  width: $width;
+  height: $height;
+  background: $close-bg-color;
+  color: $close-line-color;
+  transition: color 0.4s $easeInOutCubic, background 0.4s $easeInOutCubic, transform 0.4s ease-in-out;
+
+  @include over('lg') {
+    width: height('header-desktop');
+    height: height('header-desktop');
+  }
+
+  @include action('hover') {
+    background: rgba(color('text'), 0.8);
+  }
+
+  // 3本ライン .l-trigger__u
+  &__u {
+    display: block;
+    width: $line-width;
+    height: $line-height;
+    background: currentColor;
+    border-radius: $line-radius;
+    position: relative;
+    margin: 5px auto $calced-line-space auto;
+    transition: background 0.4s $easeInOutCubic, transform 0.4s $easeInOutCubic 0.2s;
+    // transform: translate3d(-5px, 0, 0);
+    // transition: transform 0.4s $easeInOutQuint;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      width: $line-width;
+      height: $line-height;
+      position: absolute;
+      background: currentColor;
+      border-radius: $line-radius;
+      transform-origin: center center;
+      // transform: translate3d(10px, 0, 0);
+    }
+
+    &::before {
+      bottom: $calced-line-space;
+      transition: transform 0.4s $easeInOutQuint, bottom 0.4s $easeInOutQuint 0.2s, right 0.4s $easeInOutQuint 0.2s;
+    }
+
+    &::after {
+      top: $calced-line-space;
+      transition: transform 0.4s $easeInOutQuint, top 0.4s $easeInOutQuint 0.2s, left 0.4s $easeInOutQuint 0.2s;
+    }
+  }
+
+  // ラベル .l-trigger__label
+  &__label {
+    order: 1;
+    display: block;
+    font-size: 14px;
+    margin-top: em(10, 14);
+    margin-bottom: em(-10, 14);
+    color: $close-label-color;
+  }
+
+  // Open
+  @include isAriaExpanded() {
+    color: $open-line-color;
+    background: $open-bg-color;
+    transform: translate3d(0, 0, 0);
+    transition: background 0.4s $easeInOutCubic, transform 0.4s $easeInOutCubic;
+    outline: none;
+
+    // 3本ライン
+    .l-trigger__u {
+      background: transparent;
+      transform: translate3d(0, 0, 0);
+      // transition: transform 0.4s $easeInOutQuint 0.2s;
+
+      &::before {
+        bottom: 0;
+        right: 0;
+        transform: translate3d(0, 0, 0) rotate(45deg);
+        transition: transform 0.4s $easeInOutQuint 0.2s, bottom 0.4s $easeInOutQuint, right 0.4s $easeInOutQuint;
+      }
+
+      &::after {
+        top: 0;
+        left: 0;
+        transform: translate3d(0, 0, 0) rotate(-45deg);
+        transition: transform 0.4s $easeInOutQuint 0.2s, top 0.4s $easeInOutQuint, left 0.4s $easeInOutQuint;
+      }
+    }
+
+    // ラベル
+    .l-trigger__label {
+      color: $open-label-color;
+    }
+  }
+}
+
+/*! purgecss end ignore */

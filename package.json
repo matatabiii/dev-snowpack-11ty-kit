@@ -7,22 +7,20 @@
     "clear": "del dist _site src/_site",
     "clear:dist": "del dist",
     "start": "npm-run-all build:eleventy --parallel watch:snowpack watch:svgSprite",
+    "lint": "run-p -l -c --aggregate-output lint:*",
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
-    "lint:prettier": "prettier --check 'src/**/*.{html,scss,css}'",
-    "lint": "run-p -l -c lint:*",
-    "lint-fix:eslint": "npm run lint:eslint -- --fix",
-    "lint-fix:prettier": "prettier 'src/**/*.{html,scss,css}' --write",
+    "lint:prettier": "prettier --check '**/*.{html,scss,css}'",
     "lint-fix": "run-s lint-fix:prettier lint-fix:eslint",
+    "lint-fix:eslint": "npm run lint:eslint -- --fix",
+    "lint-fix:prettier": "prettier '**/*.{html,scss,css}' --write",
     "watch:snowpack": "snowpack dev",
     "watch:svgSprite": "chokidar './src/assets/svg/icons/*.svg' -c 'npm run build:svgSprite' --initial",
-    "watch:sass": "sass --watch src/sass:src/assets/styles",
     "watch:eleventy": "eleventy --watch --incremental",
-    "build:lint-fix": "prettier 'src/_site/**/*.html' --write",
+    "build:lint-fix": "prettier '_site/**/*.html' --write",
     "build:snowpack": "snowpack build",
-    "build": "run-s clear:dist build:eleventy build:lint-fix build:svgSprite build:snowpack",
-    "build:sass": "sass --no-source-map src/sass:dist/assets/styles",
     "build:eleventy": "eleventy",
-    "build:svgSprite": "svg-sprite -symbol --symbol-dest ./src/assets/svg --symbol-sprite sprite.svg --svg-xmldecl false --shape-transform-svgo svgo.json ./src/assets/svg/icons/*.svg",
+    "build:svgSprite": "svg-sprite -symbol --symbol-dest ./src/assets/svg --shape-id-separator '' --shape-id-generator 'i-%s' --symbol-sprite sprite.svg --svg-xmldecl false --shape-transform-svgo svgo.json ./src/assets/svg/icons/*.svg",
+    "build": "run-s clear:dist build:eleventy build:lint-fix build:svgSprite build:snowpack",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
@@ -65,5 +63,8 @@
     "snowpack": "^3.7.1",
     "svg-sprite": "^1.5.0",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "sass-easing": "^1.0.3"
   }
 }

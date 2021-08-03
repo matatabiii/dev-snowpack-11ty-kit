@@ -1,0 +1,147 @@
+// 【必須】variable, functions, mixins 読み込み
+@use '../foundation/variable' as *;
+@use '../foundation/functions' as *;
+@use '../foundation/mixins' as *;
+
+// https://github.com/dmnsgn/sass-easing/blob/master/_easings.scss
+@use "./../../../node_modules/sass-easing/_easings.scss" as *;
+@use "sass:map"; // sassの機能
+/*////////////////////////////
+
+@layout/drawer
+Drawer
+
+////////////////////////////*/
+/*! purgecss start ignore */
+
+// @include break("lg") {
+.l-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(color('black'), 0.1);
+  z-index: -1;
+  visibility: hidden;
+
+  .is-open-drawer & {
+    // メニュー外クリックで閉じる
+    z-index: 5;
+    visibility: visible;
+  }
+}
+
+[data-logic='drawer'] {
+  position: fixed;
+  top: 0;
+  right: 0;
+  max-width: 100%;
+  // left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: z-index('drawer');
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+
+  // Open/Close判定
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out 0.5s, visibility 0.3s ease-in-out 0.5s;
+
+  @include isAriaExpanded() {
+    pointer-events: auto;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0s;
+
+    &::before {
+      opacity: 0.85;
+      visibility: visible;
+      width: 100%;
+      transition: opacity 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0s;
+    }
+
+    [data-logic='drawer-scroll'] {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    [data-logic='drawer-container'] {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.3s ease-in-out 0.3s, opacity 0.3s ease-in-out 0.3s, visibility 0.3s ease-in-out 0.3s;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    // left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.85;
+    background: color('black');
+    z-index: -1;
+
+    // Open/Close判定
+    visibility: hidden;
+    opacity: 0;
+    // width: 0;
+    transition: opacity 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0.15s;
+  }
+}
+
+[data-logic='drawer-scroll'] {
+  padding: height('header-sp') + 20 0 height('header-sp') + 20 0;
+  margin: 0 0 10px 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  a,
+  button {
+    outline: none;
+  }
+}
+
+[data-logic='drawer-container'] {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  // margin: 0 0 0 auto;
+  padding: 5px 0;
+
+  // Open/Close判定
+  visibility: hidden;
+  opacity: 0;
+  transform: translate3d(0, -10px, 0);
+  transition: transform 0.1s ease-in-out 0s, opacity 0.1s ease-in-out 0s, visibility 0.1s ease-in-out 0s;
+}
+
+// 案件ごとに変更する記述
+[data-logic='drawer'] {
+  // width: 600px;
+  // max-width: calc(100% - 40px);
+}
+[data-logic='drawer-scroll'] {
+}
+[data-logic='drawer-container'] {
+  display: flex;
+  flex-direction: column;
+  width: rem(777);
+  // padding-left: rem(20);
+  // padding-right: rem(20);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+// }
+
+/*! purgecss end ignore */
